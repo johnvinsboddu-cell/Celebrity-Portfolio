@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-page-wrapper">
+  <div class="form-container">
+    <h3 class="form-title">Delete Celebrities</h3>
+    <form method="POST" action="{{ url_for('admin_app.delete_celebrity') }}">
+
+      <div class="celebrity-list">
+        {% for celebrity in celebrities %}
+        <div class="celebrity-item">
+          <input type="checkbox" id="celebrity_{{ celebrity.id }}" name="selected_celebs" value="{{ celebrity.id }}">
+          <label for="celebrity_{{ celebrity.id }}">{{ celebrity.celebrity_name }} ({{ celebrity.category }})</label>
+        </div>
+        {% else %}
+        <p class="no-results">No celebrities found.</p>
+        {% endfor %}
+      </div>
+
+      {% if celebrities %}
+      <button type="submit" class="form-button">Delete Selected</button>
+      {% endif %}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

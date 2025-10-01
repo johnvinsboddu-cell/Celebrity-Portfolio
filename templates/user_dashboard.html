@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-wrapper user-dashboard-page">
+
+  <!-- Search bar -->
+  <form method="POST" action="{{ url_for('user_app.user_dashboard') }}" class="search-bar mb-4 text-center">
+    <input type="text" name="search" placeholder="🔍 Search by name or category..." value="{{ search_query or '' }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Section title -->
+  <h2 class="section-title text-center mb-4">🌟 Available Celebrities</h2>
+
+  <div class="card-grid">
+  {% for celebrity in celebrities %}
+    <div class="celebrity-card"
+         style="background-image: url('{{ 'data:image/jpeg;base64,' + celebrity.profile_base64 if celebrity.profile_base64 else 'https://placehold.co/300x300/2c3e50/ffffff?text=' + celebrity.celebrity_name[0] }}');">
+
+      <div class="card-content">
+        <h3>{{ celebrity.celebrity_name }}</h3>
+        <p class="category">{{ celebrity.category }}</p>
+
+        <div class="social-links">
+          {% if celebrity.Insta %}
+            <a href="{{ celebrity.Insta }}" target="_blank"><i class="fab fa-instagram"></i></a>
+          {% endif %}
+          {% if celebrity.yt %}
+            <a href="{{ celebrity.yt }}" target="_blank"><i class="fab fa-youtube"></i></a>
+          {% endif %}
+          {% if celebrity.twitter %}
+            <a href="{{ celebrity.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+          {% endif %}
+        </div>
+
+        <form action="#" method="POST">
+          <button type="submit" class="details-btn">View Details</button>
+        </form>
+      </div>
+    </div>
+  {% else %}
+    <p class="no-results text-center">No celebrities found matching your search.</p>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

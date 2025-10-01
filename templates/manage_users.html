@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-page-wrapper">
+  <div class="form-container">
+    <h3 class="form-title">Manage Users</h3>
+
+    <form method="POST" action="{{ url_for('admin_app.manage_users') }}">
+
+      <h4>Active Users</h4>
+      {% if active_users %}
+        {% for user in active_users %}
+          <div class="form-group">
+            <input type="checkbox" id="user_{{ user.user_id }}" name="block_users" value="{{ user.user_id }}">
+            <label for="user_{{ user.user_id }}">{{ user.username }} ({{ user.email }})</label>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No active users found.</p>
+      {% endif %}
+
+      <h4>Blocked Users</h4>
+      {% if blocked_users %}
+        {% for user in blocked_users %}
+          <div class="form-group">
+            <input type="checkbox" id="blocked_{{ user.user_id }}" name="unblock_users" value="{{ user.user_id }}">
+            <label for="blocked_{{ user.user_id }}">{{ user.username }} ({{ user.email }})</label>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No blocked users found.</p>
+      {% endif %}
+
+      <button type="submit" class="btn btn-admin form-button mt-3">Update Users</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

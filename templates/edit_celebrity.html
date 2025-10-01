@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-page-wrapper">
+  <div class="form-container">
+    <h3 class="form-title">Edit Celebrity</h3>
+
+    <form method="POST" action="{{ url_for('admin_app.edit_celebrity') }}" enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label for="celebrity_select" class="form-label">Select Celebrity</label>
+        <select id="celebrity_select" name="celebrity_id" class="form-input" required>
+          <option value="" disabled selected>Choose a celebrity...</option>
+          {% for celeb in celebrities %}
+            <option value="{{ celeb.id }}">{{ celeb.celebrity_name }} ({{ celeb.category }})</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="celebrity_name" class="form-label">Celebrity Name</label>
+        <input type="text" id="celebrity_name" name="celebrity_name" class="form-input" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" id="category" name="category" class="form-input" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="insta_link" class="form-label">Instagram Link</label>
+        <input type="url" id="insta_link" name="insta_link" class="form-input"/>
+      </div>
+
+      <div class="form-group">
+        <label for="yt_link" class="form-label">YouTube Link</label>
+        <input type="url" id="yt_link" name="yt_link" class="form-input"/>
+      </div>
+
+      <div class="form-group">
+        <label for="twitter_link" class="form-label">Twitter Link</label>
+        <input type="url" id="twitter_link" name="twitter_link" class="form-input"/>
+      </div>
+
+      <div class="form-group">
+        <label for="profile_photo" class="form-label">Profile Photo</label>
+        <input type="file" id="profile_photo" name="profile_photo" class="form-input-file" accept="image/*"/>
+        <label for="profile_photo" class="form-file-label">
+          <i class="fas fa-upload"></i>
+          <span id="fileName">Choose a file...</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-user form-button">Update Celebrity</button>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  // Display selected file name
+  const fileInput = document.getElementById('profile_photo');
+  const fileNameSpan = document.getElementById('fileName');
+  fileInput.addEventListener('change', function() {
+    if (this.files.length > 0) {
+      fileNameSpan.textContent = this.files[0].name;
+    } else {
+      fileNameSpan.textContent = 'Choose a file...';
+    }
+  });
+</script>
+{% endblock %}

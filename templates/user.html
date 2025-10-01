@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+  <h1 class="hero-title">Join the Portal</h1>
+  <p class="hero-subtitle">
+    Already have an account? Log in to access your profile. New here? Register to join the community.
+  </p>
+
+  <div class="hero-actions">
+    <a href="{{ url_for('user_app.user_login') }}" class="btn btn-user">
+      <i class="fas fa-sign-in-alt"></i>
+      Login
+    </a>
+
+    <a href="{{ url_for('user_app.user_register') }}" class="btn btn-admin">
+      <i class="fas fa-user-plus"></i>
+      Register
+    </a>
+  </div>
+</div>
+{% endblock %}

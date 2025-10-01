@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+  <h1 class="hero-title">🌟 Welcome to the Celebrity Portal</h1>
+  <p class="hero-subtitle">
+    Discover and manage information about your favorite celebrities. Join as a <b>User</b> to browse profiles and like them,
+    or log in as <b>Admin</b> to manage celebrity data.
+  </p>
+
+  <div class="hero-actions">
+    <a href="{{url_for('user_app.user')}}" class="btn btn-user">
+      <i class="fas fa-user-friends"></i>
+      Continue as User
+    </a>
+
+    <a href="{{url_for('admin_app.admin_login')}}" class="btn btn-admin">
+      <i class="fas fa-user-shield"></i>
+      Admin Panel
+    </a>
+  </div>
+</div>
+{% endblock %}
