@@ -166,7 +166,7 @@ nav ul li a:hover::after { width: 100%; }
 }
 
 .user-dashboard-page .card-content {
-  padding: 30px;
+  padding: 50px;
   background-color: rgba(0,0,0,0.55);
   text-align: center;
   width: 100%;
@@ -516,3 +516,4 @@ nav ul li a:hover::after { width: 100%; }
   height: 18px;
   cursor: pointer;
 }
+
