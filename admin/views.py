@@ -27,11 +27,11 @@ def admin_dashboard():
 def admin_login():
     if request.method == 'POST':
         pwd = request.form.get('password')
-        if pwd == 'GS KI LEDH':
+        if pwd == 'MY PASS':
             flash('Welcome BOSS')
             return redirect(url_for('admin_app.admin_dashboard'))
         else:
-            flash("'GS KI LEDH RA' JAFDA")
+            flash("INCORRECT...YOU ARE LOOKING SUSPICIOUS🧐.")
             return redirect(url_for('admin_app.admin_login'))
     return render_template('admin_login.html')
 
@@ -143,5 +143,6 @@ def manage_users():
         return redirect(url_for('admin_app.manage_users'))
 
     return render_template('manage_users.html', active_users=active_users, blocked_users=blocked_users)
+
 
 
